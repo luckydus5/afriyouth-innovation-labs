@@ -1,0 +1,71 @@
+---
+import { getEntry } from 'astro:content';
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+
+const settings = await getEntry('siteSettings', 'site-settings');
+const data = settings!.data;
+
+const footerLinks = [
+  { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
+  { href: '/programs', label: 'Programs' },
+  { href: '/partner-with-us', label: 'Partner With Us' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<footer class="bg-purple-900 text-white">
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid gap-10 md:grid-cols-3">
+      <div>
+        <div class="flex items-center gap-2">
+          <Logo variant="white" class="h-8 w-auto" />
+          <span class="font-display text-base font-semibold">AfriYouth Innovation Labs</span>
+        </div>
+        <p class="mt-4 max-w-xs text-sm text-white/70">{data.tagline}</p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-sm font-semibold uppercase tracking-wide text-pink-500">
+          Navigate
+        </h2>
+        <ul class="mt-4 space-y-2">
+          {footerLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-sm text-white/70 transition-colors hover:text-white">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-display text-sm font-semibold uppercase tracking-wide text-pink-500">
+          Get in Touch
+        </h2>
+        <ul class="mt-4 space-y-3 text-sm text-white/70">
+          <li class="flex items-center gap-2">
+            <Icon name="mail" class="h-4 w-4 shrink-0 text-pink-500" />
+            <a href={`mailto:${data.email}`} class="hover:text-white">
+              {data.email}
+            </a>
+          </li>
+          {data.phone.map((phone) => (
+            <li class="flex items-center gap-2">
+              <Icon name="phone" class="h-4 w-4 shrink-0 text-pink-500" />
+              <a href={`tel:${phone.replace(/\s/g, '')}`} class="hover:text-white">
+                {phone}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
+      <p>&copy; {new Date().getFullYear()} AfriYouth Innovation Labs. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

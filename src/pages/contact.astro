@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { getEntry } from 'astro:content';
+
+const settings = await getEntry('siteSettings', 'site-settings');
+const data = settings!.data;
+---
+
+<Layout
+  title="Contact"
+  description="Get in touch with AfriYouth Innovation Labs — for opportunities, services, or partnership inquiries."
+>
+  <section class="bg-purple-900 py-16 text-white sm:py-20">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <p class="font-display text-sm font-semibold uppercase tracking-widest text-pink-500">
+        Contact
+      </p>
+      <h1 class="mt-4 font-display text-4xl font-bold leading-tight sm:text-5xl">Let's talk</h1>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+        Whether you're exploring an opportunity, looking for services, or interested in partnership,
+        send us a message and we'll follow up.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-16 sm:py-20">
+    <div class="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-5 lg:px-8">
+      <div class="lg:col-span-3">
+        <form action="https://api.web3forms.com/submit" method="POST" class="space-y-5">
+          <input type="hidden" name="access_key" value="[TBC: Web3Forms access key]" />
+          <input type="hidden" name="subject" value="New message from AfriYouth website" />
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none" />
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="name" class="block text-sm font-medium text-purple-900">
+                Full name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="mt-1.5 w-full rounded-lg border border-purple-900/20 px-4 py-2.5 text-sm text-ink focus:border-blue-700 focus:outline-none"
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-purple-900">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="mt-1.5 w-full rounded-lg border border-purple-900/20 px-4 py-2.5 text-sm text-ink focus:border-blue-700 focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="reason" class="block text-sm font-medium text-purple-900">
+              I'm reaching out as
+            </label>
+            <select
+              id="reason"
+              name="reason"
+              class="mt-1.5 w-full rounded-lg border border-purple-900/20 px-4 py-2.5 text-sm text-ink focus:border-blue-700 focus:outline-none"
+            >
+              <option>A young person looking for an opportunity</option>
+              <option>An organization looking for services</option>
+              <option>A potential partner</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-medium text-purple-900">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              required
+              class="mt-1.5 w-full rounded-lg border border-purple-900/20 px-4 py-2.5 text-sm text-ink focus:border-blue-700 focus:outline-none"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="rounded-full bg-purple-900 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+          >
+            Send Message
+          </button>
+        </form>
+      </div>
+
+      <div class="lg:col-span-2">
+        <div class="rounded-2xl bg-surface p-7">
+          <h2 class="font-display text-lg font-semibold text-purple-900">Other ways to reach us</h2>
+          <ul class="mt-5 space-y-4">
+            <li class="flex items-start gap-3">
+              <Icon name="mail" class="mt-0.5 h-5 w-5 shrink-0 text-blue-700" />
+              <a href={`mailto:${data.email}`} class="text-sm text-ink-soft hover:text-purple-900">
+                {data.email}
+              </a>
+            </li>
+            {data.phone.map((phone) => (
+              <li class="flex items-start gap-3">
+                <Icon name="phone" class="mt-0.5 h-5 w-5 shrink-0 text-blue-700" />
+                <a
+                  href={`tel:${phone.replace(/\s/g, '')}`}
+                  class="text-sm text-ink-soft hover:text-purple-900"
+                >
+                  {phone}
+                </a>
+              </li>
+            ))}
+            <li class="flex items-start gap-3">
+              <Icon name="map-pin" class="mt-0.5 h-5 w-5 shrink-0 text-blue-700" />
+              <span class="text-sm text-ink-soft">{data.address}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

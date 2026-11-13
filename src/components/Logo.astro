@@ -1,0 +1,77 @@
+---
+interface Props {
+  class?: string;
+  variant?: 'gradient' | 'white';
+}
+
+const { class: className = 'h-9 w-auto', variant = 'gradient' } = Astro.props;
+---
+
+{variant === 'white' ? (
+  <svg viewBox="0 0 200 220" fill="none" class={className} aria-hidden="true">
+    <rect x="94" y="8" width="16" height="36" rx="8" fill="#ffffff" />
+    <rect
+      x="38"
+      y="30"
+      width="16"
+      height="36"
+      rx="8"
+      fill="#ffffff"
+      transform="rotate(-35 46 48)"
+    />
+    <rect
+      x="150"
+      y="30"
+      width="16"
+      height="36"
+      rx="8"
+      fill="#ffffff"
+      transform="rotate(35 158 48)"
+    />
+    <circle cx="102" cy="88" r="26" fill="#ffffff" />
+    <path
+      d="M66 92 C 50 100, 30 108, 22 128 C 14 150, 26 176, 48 196 C 66 212, 92 220, 112 214 C 136 206, 150 180, 146 154 C 142 128, 122 108, 102 98 C 92 93, 78 90, 66 92 Z"
+      fill="#ffffff"
+    />
+  </svg>
+) : (
+  <svg viewBox="0 0 200 220" fill="none" class={className} aria-hidden="true">
+    <defs>
+      <linearGradient
+        id="afriyouth-mark-gradient"
+        x1="20"
+        y1="70"
+        x2="170"
+        y2="220"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset="0" stop-color="#C723DF" />
+        <stop offset="1" stop-color="#0301FF" />
+      </linearGradient>
+    </defs>
+    <rect x="94" y="8" width="16" height="36" rx="8" fill="#4B18E0" />
+    <rect
+      x="38"
+      y="30"
+      width="16"
+      height="36"
+      rx="8"
+      fill="#4B18E0"
+      transform="rotate(-35 46 48)"
+    />
+    <rect
+      x="150"
+      y="30"
+      width="16"
+      height="36"
+      rx="8"
+      fill="#4B18E0"
+      transform="rotate(35 158 48)"
+    />
+    <circle cx="102" cy="88" r="26" fill="#4B18E0" />
+    <path
+      d="M66 92 C 50 100, 30 108, 22 128 C 14 150, 26 176, 48 196 C 66 212, 92 220, 112 214 C 136 206, 150 180, 146 154 C 142 128, 122 108, 102 98 C 92 93, 78 90, 66 92 Z"
+      fill="url(#afriyouth-mark-gradient)"
+    />
+  </svg>
+)}

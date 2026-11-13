@@ -1,0 +1,16 @@
+{
+  "site-settings": {
+    "orgName": "AfriYouth Innovation Labs",
+    "tagline": "Fueling Innovators for Sustainable Development",
+    "email": "[TBC: official contact email]",
+    "phone": ["[TBC: official phone number]"],
+    "address": "[TBC: office address]",
+    "social": {
+      "linkedin": "[TBC: LinkedIn URL]",
+      "twitter": "[TBC: X/Twitter URL]",
+      "facebook": "[TBC: Facebook URL]",
+      "instagram": "[TBC: Instagram URL]"
+    },
+    "formEndpoint": "[TBC: Formspree or Web3Forms endpoint]"
+  }
+}

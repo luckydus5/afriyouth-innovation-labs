@@ -1,0 +1,163 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PathCard from '../components/PathCard.astro';
+import Icon from '../components/Icon.astro';
+import { getCollection } from 'astro:content';
+
+const labs = (await getCollection('labs')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout
+  title="AfriYouth Innovation Labs"
+  description="AfriYouth Innovation Labs is a research, innovation and policy consulting firm that identifies, nurtures, and advances promising ideas from Africa's young innovators to address the Sustainable Development Goals."
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-purple-900 text-white">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="font-display text-sm font-semibold uppercase tracking-widest text-pink-500">
+          Research &middot; Innovation &middot; Policy &middot; Foresight
+        </p>
+        <h1 class="mt-5 font-display text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+          From evidence to impact, for Africa's youth.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
+          AfriYouth Innovation Labs is a research, innovation and policy consulting firm that
+          identifies, nurtures, and advances promising ideas from Africa's young innovators to
+          address the Sustainable Development Goals. By 2030, Africa will have the largest workforce
+          in the world &mdash; we exist to give youth the ability and capacity to solve African
+          problems.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-4">
+          <a
+            href="/programs"
+            class="rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+          >
+            Explore Opportunities
+          </a>
+          <a
+            href="/about"
+            class="rounded-full border border-white/30 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10"
+          >
+            Learn Our Story
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three-path router -->
+  <section class="bg-surface py-16 sm:py-20" aria-labelledby="paths-heading">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 id="paths-heading" class="font-display text-3xl font-bold text-ink sm:text-4xl">
+          Wherever you're starting from, there's a path for you.
+        </h2>
+        <p class="mt-3 text-base text-ink-soft">
+          AfriYouth works with young people, organizations, and partners. Find the path that fits.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <PathCard
+          icon="rocket"
+          title="I'm looking for an opportunity"
+          description="Explore programs built for young people, check eligibility, and find opportunities open now."
+          href="/programs"
+          ctaLabel="View programs"
+        />
+        <PathCard
+          icon="users"
+          title="I'm an organization looking for services"
+          description="See how AfriYouth supports research, policy, innovation, impact, and capacity-building needs."
+          href="/services"
+          ctaLabel="Explore services"
+        />
+        <PathCard
+          icon="compass"
+          title="I'm a partner exploring collaboration"
+          description="Understand our areas of work, current programs, and how to start a conversation."
+          href="/partner-with-us"
+          ctaLabel="Partner with us"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section class="bg-white py-16 sm:py-20" aria-labelledby="work-heading">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <h2 id="work-heading" class="font-display text-3xl font-bold text-ink sm:text-4xl">
+          Our labs
+        </h2>
+        <a
+          href="/services"
+          class="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700"
+        >
+          Explore all services
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+      </div>
+
+      <ul class="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+        {labs.map((lab) => (
+          <li class="flex gap-4">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-surface text-blue-600">
+              <Icon name={lab.data.icon} class="h-5 w-5" />
+            </div>
+            <div>
+              <h3 class="font-display text-base font-semibold text-ink">{lab.data.title}</h3>
+              <p class="mt-1 text-sm leading-relaxed text-ink-soft">{lab.data.summary}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Flagship product -->
+  <section class="gradient-surface py-16 text-white sm:py-20">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+      <p class="font-display text-sm font-semibold uppercase tracking-widest text-white/80">
+        Our flagship product
+      </p>
+      <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">
+        Evidence-to-Impact Accelerator
+      </h2>
+      <p class="mt-5 text-lg leading-relaxed text-white/85">
+        Instead of disconnected research, incubation, and training programmes, we combine them:
+        Discover &rarr; Diagnose &rarr; Research &rarr; Design &rarr; Prototype &rarr; Policy &rarr;
+        Finance &rarr; Implement &rarr; Measure &rarr; Scale.
+      </p>
+      <div class="mt-8">
+        <a
+          href="/about"
+          class="inline-flex items-center gap-1.5 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-purple-900 transition-colors hover:bg-white/90"
+        >
+          Learn how it works
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-surface py-16 sm:py-20">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Ready to get involved?</h2>
+      <p class="mt-4 text-base text-ink-soft">
+        Whether you're an individual, an organization, or a potential partner, we'd like to hear
+        from you.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a
+          href="/contact"
+          class="rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+        >
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

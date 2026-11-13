@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" fill="none">
+  <defs>
+    <linearGradient id="afriyouth-mark-gradient" x1="20" y1="90" x2="170" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C723DF" />
+      <stop offset="1" stop-color="#0301FF" />
+    </linearGradient>
+  </defs>
+
+  <!-- radiating spikes -->
+  <rect x="94" y="4" width="15" height="34" rx="7.5" fill="#4B18E0" />
+  <rect x="42" y="24" width="15" height="34" rx="7.5" fill="#4B18E0" transform="rotate(-38 49.5 41)" />
+  <rect x="146" y="24" width="15" height="34" rx="7.5" fill="#4B18E0" transform="rotate(38 153.5 41)" />
+
+  <!-- head -->
+  <circle cx="101" cy="82" r="24" fill="#4B18E0" />
+
+  <!-- raised arm: a single rounded wedge reaching up-left from the torso -->
+  <path
+    d="M84 86
+       Q 70 80, 54 92
+       Q 44 100, 46 112
+       Q 60 104, 76 104
+       Q 90 104, 100 112
+       Q 96 96, 84 86 Z"
+    fill="url(#afriyouth-mark-gradient)"
+  />
+
+  <!-- torso: rounded teardrop leaning right -->
+  <path
+    d="M98 100
+       Q 140 108, 150 150
+       Q 158 188, 128 208
+       Q 100 224, 70 208
+       Q 44 192, 46 160
+       Q 48 130, 74 110
+       Q 86 101, 98 100 Z"
+    fill="url(#afriyouth-mark-gradient)"
+  />
+</svg>

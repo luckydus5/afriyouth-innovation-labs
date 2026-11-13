@@ -1,0 +1,100 @@
+---
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+
+const navLinks = [
+  { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
+  { href: '/programs', label: 'Programs' },
+  { href: '/partner-with-us', label: 'Partner With Us' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-40 border-b border-purple-900/10 bg-white/95 backdrop-blur">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+    <a href="/" class="flex items-center gap-2" aria-label="AfriYouth Innovation Labs home">
+      <Logo class="h-9 w-auto" />
+      <span class="font-display text-lg font-semibold text-ink">AfriYouth</span>
+    </a>
+
+    <nav class="hidden items-center gap-6 lg:flex" aria-label="Primary">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class={`text-sm font-medium transition-colors hover:text-blue-600 ${
+            currentPath === link.href ? 'text-blue-600' : 'text-ink'
+          }`}
+          aria-current={currentPath === link.href ? 'page' : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="/programs"
+        class="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+      >
+        Find an Opportunity
+      </a>
+    </nav>
+
+    <button
+      id="menu-toggle"
+      type="button"
+      class="flex items-center justify-center rounded-md p-2 text-ink lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Open menu"
+    >
+      <span id="menu-icon-open">
+        <Icon name="menu" class="h-6 w-6" />
+      </span>
+      <span id="menu-icon-close" class="hidden">
+        <Icon name="x" class="h-6 w-6" />
+      </span>
+    </button>
+  </div>
+
+  <nav
+    id="mobile-menu"
+    class="hidden flex-col gap-1 border-t border-purple-900/10 bg-white px-4 py-4 lg:hidden"
+    aria-label="Mobile primary"
+  >
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class={`rounded-md px-3 py-3 text-base font-medium ${
+          currentPath === link.href ? 'bg-surface text-blue-600' : 'text-ink'
+        }`}
+        aria-current={currentPath === link.href ? 'page' : undefined}
+      >
+        {link.label}
+      </a>
+    ))}
+    <a
+      href="/programs"
+      class="mt-2 rounded-full bg-blue-600 px-5 py-3 text-center text-base font-semibold text-white"
+    >
+      Find an Opportunity
+    </a>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.contains('flex');
+    menu?.classList.toggle('hidden', isOpen);
+    menu?.classList.toggle('flex', !isOpen);
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+    iconOpen?.classList.toggle('hidden', !isOpen);
+    iconClose?.classList.toggle('hidden', isOpen);
+  });
+</script>

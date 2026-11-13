@@ -1,0 +1,25 @@
+---
+interface Props {
+  name: string;
+  class?: string;
+}
+
+const { name, class: className = 'w-6 h-6' } = Astro.props;
+
+const icons = import.meta.glob('../../node_modules/lucide-static/icons/*.svg', {
+  query: '?raw',
+  import: 'default',
+}) as Record<string, () => Promise<string>>;
+
+const iconKey = `../../node_modules/lucide-static/icons/${name}.svg`;
+const loader = icons[iconKey];
+
+if (!loader) {
+  throw new Error(`Icon "${name}" not found in lucide-static`);
+}
+
+const rawSvg = await loader();
+const svg = rawSvg.replace('<svg ', `<svg class="${className}" `);
+---
+
+<Fragment set:html={svg} />

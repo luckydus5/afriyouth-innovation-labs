@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { getCollection } from 'astro:content';
+
+const labs = (await getCollection('labs')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout
+  title="Services"
+  description="AfriYouth Innovation Labs supports organizations and institutions across research, policy, innovation, foresight, professional development, and impact measurement."
+>
+  <section class="bg-purple-900 py-16 text-white sm:py-20">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <p class="font-display text-sm font-semibold uppercase tracking-widest text-pink-500">
+        For Organizations &amp; Institutions
+      </p>
+      <h1 class="mt-4 font-display text-4xl font-bold leading-tight sm:text-5xl">
+        Services built on evidence, design, and policy expertise
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
+        Whether you need research, policy support, innovation capacity, foresight, or impact
+        measurement, AfriYouth partners with organizations to deliver solutions grounded in evidence
+        and human-centered design.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-16 sm:py-20" aria-labelledby="services-heading">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <h2 id="services-heading" class="sr-only">
+        Our services
+      </h2>
+
+      <div class="space-y-6">
+        {labs.map((lab) => (
+          <article
+            id={lab.id}
+            class="scroll-mt-24 rounded-2xl border border-purple-900/10 p-7 sm:p-8"
+          >
+            <div class="flex items-start gap-4">
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-surface text-blue-600">
+                <Icon name={lab.data.icon} class="h-6 w-6" />
+              </div>
+              <div>
+                <h3 class="font-display text-xl font-semibold text-ink">{lab.data.title}</h3>
+                <p class="mt-2 leading-relaxed text-ink-soft">{lab.data.summary}</p>
+              </div>
+            </div>
+
+            <ul class="mt-6 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+              {lab.data.services.map((service) => (
+                <li class="flex items-start gap-2 text-sm text-ink-soft">
+                  <Icon name="check-circle" class="mt-0.5 h-4 w-4 shrink-0 text-blue-600" />
+                  {service}
+                </li>
+              ))}
+            </ul>
+
+            {lab.data.product && (
+              <div class="mt-6 rounded-xl bg-surface px-5 py-4">
+                <p class="text-xs font-semibold uppercase tracking-wide text-blue-700">Product</p>
+                <p class="mt-1 text-sm text-ink">{lab.data.product}</p>
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-surface py-16 text-center sm:py-20">
+    <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Let's discuss your needs</h2>
+      <p class="mt-4 text-ink-soft">
+        Tell us about your research, policy, or innovation needs and we'll follow up.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a
+          href="/contact"
+          class="rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+        >
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
