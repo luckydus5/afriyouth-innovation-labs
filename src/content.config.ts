@@ -50,7 +50,6 @@ const siteSettings = defineCollection({
       facebook: z.string().optional(),
       instagram: z.string().optional(),
     }),
-    formEndpoint: z.string(),
   }),
 });
 

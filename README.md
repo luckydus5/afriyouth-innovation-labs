@@ -53,22 +53,23 @@ code changes required.
 These values are still marked `[TBC: ...]` pending official information from AfriYouth. The site
 builds and runs correctly with them in place; replace each before final handover.
 
-| Placeholder                  | File                                       | Field                         |
-| ---------------------------- | ------------------------------------------ | ----------------------------- |
-| Official contact email       | `src/content/site-settings.json`           | `email`                       |
-| Official phone number        | `src/content/site-settings.json`           | `phone`                       |
-| Office address               | `src/content/site-settings.json`           | `address`                     |
-| LinkedIn URL                 | `src/content/site-settings.json`           | `social.linkedin`             |
-| X / Twitter URL              | `src/content/site-settings.json`           | `social.twitter`              |
-| Facebook URL                 | `src/content/site-settings.json`           | `social.facebook`             |
-| Instagram URL                | `src/content/site-settings.json`           | `social.instagram`            |
-| Web3Forms endpoint reference | `src/content/site-settings.json`           | `formEndpoint`                |
-| Web3Forms access key         | `src/pages/contact.astro`                  | the hidden `access_key` input |
-| Web3Forms access key         | `src/pages/programs/[slug]/register.astro` | the hidden `access_key` input |
+| Placeholder            | File                             | Field              |
+| ---------------------- | -------------------------------- | ------------------ |
+| Official contact email | `src/content/site-settings.json` | `email`            |
+| Official phone number  | `src/content/site-settings.json` | `phone`            |
+| Office address         | `src/content/site-settings.json` | `address`          |
+| LinkedIn URL           | `src/content/site-settings.json` | `social.linkedin`  |
+| X / Twitter URL        | `src/content/site-settings.json` | `social.twitter`   |
+| Facebook URL           | `src/content/site-settings.json` | `social.facebook`  |
+| Instagram URL          | `src/content/site-settings.json` | `social.instagram` |
 
 Social icons in the footer only appear once their URL is filled in; each stays hidden while its
-value still starts with `[TBC`. The contact form and the per-programme registration form will not
-submit until a real Web3Forms access key replaces the placeholder in each.
+value still starts with `[TBC`.
+
+The contact form and every per-programme registration form already submit to a working Web3Forms
+account (access key `be537b15-e5df-4643-a8cb-8443e9ba1d8e`). Submissions land in the inbox used
+to create that key. Swap this key for AfriYouth's own Web3Forms account before final handover, in
+both `src/pages/contact.astro` and `src/pages/programs/[slug]/register.astro`.
 
 After editing, commit the change. Vercel rebuilds and redeploys automatically.
 

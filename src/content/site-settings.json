@@ -10,7 +10,6 @@
       "twitter": "[TBC: X/Twitter URL]",
       "facebook": "[TBC: Facebook URL]",
       "instagram": "[TBC: Instagram URL]"
-    },
-    "formEndpoint": "[TBC: Formspree or Web3Forms endpoint]"
+    }
   }
 }
