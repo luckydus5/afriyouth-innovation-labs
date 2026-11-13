@@ -1,4 +1,4 @@
-# AfriYouth Innovation Labs — Website
+# AfriYouth Innovation Labs Website
 
 Official website for AfriYouth Innovation Labs, built for the Jobra Competence AfriYouth Website
 Design & Development Challenge.
@@ -16,14 +16,14 @@ deployable to Vercel with no backend required.
 ├── src/
 │   ├── assets/brand/        Brand SVG assets used by components
 │   ├── components/          Reusable UI pieces (Header, Footer, Logo, Icon, PathCard)
-│   ├── content/              Editable content — see "Editing content" below
+│   ├── content/              Editable content, see "Editing content" below
 │   │   ├── labs/            The six AfriYouth labs: services, summary, flagship product
 │   │   ├── programs/        Youth-facing programmes and opportunities
-│   │   ├── team/            Team member bios (optional — section hides if empty)
+│   │   ├── team/            Team member bios (optional, section hides if empty)
 │   │   └── site-settings.json   Contact details, social links, form endpoint
 │   ├── content.config.ts    Schema definitions for the content above
 │   ├── layouts/Layout.astro Shared page shell: meta tags, header, footer
-│   ├── pages/                One file per route (Home, About, Services, Programs, …)
+│   ├── pages/                One file per route (Home, About, Services, Programs, etc.)
 │   └── styles/global.css    Design tokens (colours, type) and global styles
 ├── astro.config.mjs
 └── package.json
@@ -31,8 +31,8 @@ deployable to Vercel with no backend required.
 
 ## Editing content
 
-Everything a non-developer needs to update lives in `src/content/` as Markdown or JSON — no code
-changes required.
+Everything a non-developer needs to update lives in `src/content/` as Markdown or JSON, with no
+code changes required.
 
 - **Labs** (`src/content/labs/*.md`): each file is one of AfriYouth's six labs. Edit the
   `summary`, `services` list, or `product` field in the frontmatter at the top of the file.
@@ -43,10 +43,10 @@ changes required.
 - **Site settings** (`src/content/site-settings.json`): contact email, phone numbers, social
   links, and the contact form endpoint.
 
-Any value still showing `[TBC: ...]` is a placeholder pending official content from AfriYouth —
-search the codebase for `TBC` to find every remaining placeholder before launch.
+Any value still showing `[TBC: ...]` is a placeholder pending official content from AfriYouth.
+Search the codebase for `TBC` to find every remaining placeholder before launch.
 
-After editing, commit the change — Vercel rebuilds and redeploys automatically.
+After editing, commit the change. Vercel rebuilds and redeploys automatically.
 
 ## Local development
 
@@ -65,7 +65,7 @@ npm run dev       # starts a local server at http://localhost:4321
 
 ## Deployment
 
-The site is a static build with no backend — deploy the `dist/` output to any static host.
+The site is a static build with no backend. Deploy the `dist/` output to any static host.
 For Vercel: import the GitHub repository, leave the build settings at their Astro defaults
 (`npm run build`, output directory `dist`), and deploy.
 

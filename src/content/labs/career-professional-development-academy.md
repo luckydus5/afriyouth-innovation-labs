@@ -1,6 +1,6 @@
 ---
 title: Career & Professional Development Academy
-summary: A practical, experiential platform moving young people from education to employability, employment, and career progression — learn, practice, apply, demonstrate.
+summary: A practical, experiential platform moving young people from education to employability, employment, and career progression, through learning, practice, application, and demonstration.
 icon: graduation-cap
 services:
   - CV and cover letter customization

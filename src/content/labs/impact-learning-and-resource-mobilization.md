@@ -1,6 +1,6 @@
 ---
 title: Impact & Learning Services
-summary: For organizations that implement projects but struggle to prove whether they work — we build the systems to measure and tell that story.
+summary: For organizations that implement projects but struggle to prove whether they work, we build the systems to measure and tell that story.
 icon: trending-up
 services:
   - Theory of Change

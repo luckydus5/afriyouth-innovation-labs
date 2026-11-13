@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Colour tokens — from official AfriYouth Innovation Labs brand guidelines */
+  /* Colour tokens, from official AfriYouth Innovation Labs brand guidelines */
   --color-blue-600: #0301ff;
   --color-blue-700: #0200a7;
   --color-purple-900: #0d0624;
@@ -12,7 +12,7 @@
 
   --color-surface: #f6f5fa;
 
-  /* Type — Poppins per brand guidelines; Gilroy is a paid font with no free
+  /* Type: Poppins per brand guidelines; Gilroy is a paid font with no free
      license, so Plus Jakarta Sans (free, geometric, similarly rounded) stands
      in for body text. */
   --font-display: 'Poppins', ui-sans-serif, system-ui, sans-serif;
@@ -53,7 +53,7 @@ h4 {
   font-family: var(--font-display);
 }
 
-/* Visible focus state for keyboard navigation — WCAG 2.1 AA */
+/* Visible focus state for keyboard navigation, WCAG 2.1 AA */
 :focus-visible {
   outline: 2px solid var(--color-blue-600);
   outline-offset: 2px;

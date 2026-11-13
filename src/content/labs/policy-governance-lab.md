@@ -1,6 +1,6 @@
 ---
 title: Policy & Governance Lab
-summary: We translate research into actionable policies and institutional reforms — our most important intellectual product.
+summary: We translate research into actionable policies and institutional reforms, our most important intellectual product.
 icon: scroll-text
 services:
   - Policy analysis and design
