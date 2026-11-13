@@ -28,3 +28,6 @@ pnpm-debug.log*
 
 # stray duplicate of docs/source-material content
 /assets/
+
+# Microsoft Office lock files
+~$*
