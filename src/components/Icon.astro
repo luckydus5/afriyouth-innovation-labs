@@ -19,7 +19,16 @@ if (!loader) {
 }
 
 const rawSvg = await loader();
-const svg = rawSvg.replace('<svg ', `<svg class="${className}" `);
+
+// Lucide ships each icon with its own class and intrinsic width/height, spread
+// over several lines. Drop the dimensions so the utility classes are the only
+// size authority, then merge our classes into the existing class attribute.
+const svg = rawSvg
+  .replace(/\s+(?:width|height)="\d+"/g, '')
+  .replace(
+    /class="([^"]*)"/,
+    (_m, existing) => `class="${existing} ${className}" aria-hidden="true"`,
+  );
 ---
 
 <Fragment set:html={svg} />
