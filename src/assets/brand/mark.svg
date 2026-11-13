@@ -1,39 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" fill="none">
   <defs>
-    <linearGradient id="afriyouth-mark-gradient" x1="20" y1="90" x2="170" y2="220" gradientUnits="userSpaceOnUse">
+    <linearGradient id="afriyouth-mark-left" x1="20" y1="90" x2="95" y2="210" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#C723DF" />
+      <stop offset="1" stop-color="#6A1FE0" />
+    </linearGradient>
+    <linearGradient id="afriyouth-mark-right" x1="180" y1="90" x2="105" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2A0FE0" />
       <stop offset="1" stop-color="#0301FF" />
     </linearGradient>
   </defs>
 
-  <!-- radiating spikes -->
-  <rect x="94" y="4" width="15" height="34" rx="7.5" fill="#4B18E0" />
-  <rect x="42" y="24" width="15" height="34" rx="7.5" fill="#4B18E0" transform="rotate(-38 49.5 41)" />
-  <rect x="146" y="24" width="15" height="34" rx="7.5" fill="#4B18E0" transform="rotate(38 153.5 41)" />
+  <!-- small diamond spike above the head -->
+  <rect x="91" y="4" width="18" height="18" rx="4" fill="#4B18E0" transform="rotate(45 100 13)" />
 
   <!-- head -->
-  <circle cx="101" cy="82" r="24" fill="#4B18E0" />
+  <circle cx="100" cy="60" r="22" fill="#2E0FE0" />
 
-  <!-- raised arm: a single rounded wedge reaching up-left from the torso -->
+  <!-- left arm: sweeps down-left to a point -->
   <path
-    d="M84 86
-       Q 70 80, 54 92
-       Q 44 100, 46 112
-       Q 60 104, 76 104
-       Q 90 104, 100 112
-       Q 96 96, 84 86 Z"
-    fill="url(#afriyouth-mark-gradient)"
+    d="M100 58
+       C 90 66, 60 78, 36 102
+       C 20 117, 10 136, 14 156
+       C 36 146, 58 150, 78 168
+       C 90 179, 98 194, 100 210
+       Z"
+    fill="url(#afriyouth-mark-left)"
   />
 
-  <!-- torso: rounded teardrop leaning right -->
+  <!-- right arm: sweeps down-right to meet the left at a point -->
   <path
-    d="M98 100
-       Q 140 108, 150 150
-       Q 158 188, 128 208
-       Q 100 224, 70 208
-       Q 44 192, 46 160
-       Q 48 130, 74 110
-       Q 86 101, 98 100 Z"
-    fill="url(#afriyouth-mark-gradient)"
+    d="M100 58
+       C 110 66, 140 78, 164 102
+       C 180 117, 190 136, 186 156
+       C 164 146, 142 150, 122 168
+       C 110 179, 102 194, 100 210
+       Z"
+    fill="url(#afriyouth-mark-right)"
   />
 </svg>
