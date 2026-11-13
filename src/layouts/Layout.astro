@@ -49,6 +49,7 @@ const pageTitle =
     />
   </head>
   <body class="flex min-h-screen flex-col">
+    <div id="scroll-progress"></div>
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-purple-900 focus:px-4 focus:py-2 focus:text-white"
@@ -80,6 +81,56 @@ const pageTitle =
           { threshold: 0.15, rootMargin: '0px 0px -40px 0px' },
         );
         targets.forEach((el) => observer.observe(el));
+      }
+
+      // Scroll-progress bar
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) {
+        let ticking = false;
+        const updateProgress = () => {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          progressBar.style.width = `${pct}%`;
+          ticking = false;
+        };
+        updateProgress();
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (!ticking) {
+              requestAnimationFrame(updateProgress);
+              ticking = true;
+            }
+          },
+          { passive: true },
+        );
+      }
+
+      // Subtle parallax drift on decorative hero blobs
+      if (!prefersReducedMotion) {
+        const parallaxEls = document.querySelectorAll('[data-parallax]');
+        if (parallaxEls.length > 0) {
+          let parallaxTicking = false;
+          const updateParallax = () => {
+            const scrollTop = window.scrollY;
+            parallaxEls.forEach((el) => {
+              const speed = parseFloat(el.getAttribute('data-parallax') || '0');
+              el.style.transform = `translateY(${scrollTop * speed}px)`;
+            });
+            parallaxTicking = false;
+          };
+          window.addEventListener(
+            'scroll',
+            () => {
+              if (!parallaxTicking) {
+                requestAnimationFrame(updateParallax);
+                parallaxTicking = true;
+              }
+            },
+            { passive: true },
+          );
+        }
       }
     </script>
   </body>
