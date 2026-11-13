@@ -17,9 +17,6 @@
      in for body text. */
   --font-display: 'Poppins', ui-sans-serif, system-ui, sans-serif;
   --font-body: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
-
-  /* Container */
-  --breakpoint-xs: 23.4375rem; /* 375px */
 }
 
 html {
@@ -58,13 +55,6 @@ h4 {
   outline: 2px solid var(--color-blue-600);
   outline-offset: 2px;
   border-radius: 2px;
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, var(--color-pink-500), var(--color-blue-600));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 .gradient-surface {

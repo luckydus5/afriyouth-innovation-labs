@@ -24,6 +24,7 @@ deployable to Vercel with no backend required.
 │   ├── content.config.ts    Schema definitions for the content above
 │   ├── layouts/Layout.astro Shared page shell: meta tags, header, footer
 │   ├── pages/                One file per route (Home, About, Services, Programs, etc.)
+│   │   └── programs/[slug]/register.astro   One registration page per programme
 │   └── styles/global.css    Design tokens (colours, type) and global styles
 ├── astro.config.mjs
 └── package.json
@@ -37,14 +38,37 @@ code changes required.
 - **Labs** (`src/content/labs/*.md`): each file is one of AfriYouth's six labs. Edit the
   `summary`, `services` list, or `product` field in the frontmatter at the top of the file.
 - **Programs** (`src/content/programs/*.md`): each file is one programme or opportunity. Set
-  `status` to `open`, `upcoming`, or `closed`; add an `applyUrl` once applications open.
+  `status` to `open`, `upcoming`, or `closed`. While a programme has no `applyUrl`, its button on
+  the Programs page reads "Register Interest" and leads to a dedicated registration form at
+  `/programs/<slug>/register`. Once you add an `applyUrl` (an external application link or form)
+  and set `status: open`, the button automatically switches to "Apply Now" and links there
+  instead.
 - **Team** (`src/content/team/*.md`): add one file per person with `name`, `role`, and optional
   `bio`/`photo`. The "Our team" section on the About page only appears once a file exists here.
 - **Site settings** (`src/content/site-settings.json`): contact email, phone numbers, social
   links, and the contact form endpoint.
 
-Any value still showing `[TBC: ...]` is a placeholder pending official content from AfriYouth.
-Search the codebase for `TBC` to find every remaining placeholder before launch.
+## Remaining placeholders
+
+These values are still marked `[TBC: ...]` pending official information from AfriYouth. The site
+builds and runs correctly with them in place; replace each before final handover.
+
+| Placeholder                  | File                                       | Field                         |
+| ---------------------------- | ------------------------------------------ | ----------------------------- |
+| Official contact email       | `src/content/site-settings.json`           | `email`                       |
+| Official phone number        | `src/content/site-settings.json`           | `phone`                       |
+| Office address               | `src/content/site-settings.json`           | `address`                     |
+| LinkedIn URL                 | `src/content/site-settings.json`           | `social.linkedin`             |
+| X / Twitter URL              | `src/content/site-settings.json`           | `social.twitter`              |
+| Facebook URL                 | `src/content/site-settings.json`           | `social.facebook`             |
+| Instagram URL                | `src/content/site-settings.json`           | `social.instagram`            |
+| Web3Forms endpoint reference | `src/content/site-settings.json`           | `formEndpoint`                |
+| Web3Forms access key         | `src/pages/contact.astro`                  | the hidden `access_key` input |
+| Web3Forms access key         | `src/pages/programs/[slug]/register.astro` | the hidden `access_key` input |
+
+Social icons in the footer only appear once their URL is filled in; each stays hidden while its
+value still starts with `[TBC`. The contact form and the per-programme registration form will not
+submit until a real Web3Forms access key replaces the placeholder in each.
 
 After editing, commit the change. Vercel rebuilds and redeploys automatically.
 
