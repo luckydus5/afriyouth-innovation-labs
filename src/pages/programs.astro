@@ -16,8 +16,13 @@ const statusStyles: Record<string, string> = {
   title="Programs"
   description="Explore AfriYouth Innovation Labs programs and opportunities for young people across Africa. Check eligibility and take the next step."
 >
-  <section class="bg-purple-900 py-16 text-white sm:py-20">
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+  <section class="relative overflow-hidden bg-purple-900 py-16 text-white sm:py-20">
+    <div
+      class="pointer-events-none absolute -right-20 -top-20 h-[380px] w-[380px] rounded-full opacity-20 blur-3xl"
+      style="background: radial-gradient(circle, #c723df, transparent 70%)"
+      aria-hidden="true"
+    ></div>
+    <div class="reveal relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <p class="font-display text-sm font-semibold uppercase tracking-widest text-pink-500">
         For Young People
       </p>
@@ -37,11 +42,11 @@ const statusStyles: Record<string, string> = {
         All programs
       </h2>
 
-      <div class="space-y-6">
+      <div class="reveal-stagger space-y-6">
         {programs.map((program) => (
           <article
             id={program.id}
-            class="scroll-mt-24 rounded-2xl border border-purple-900/10 bg-white p-7 sm:p-8"
+            class="scroll-mt-24 rounded-2xl border border-purple-900/10 bg-white p-7 transition-all hover:border-blue-600 hover:shadow-md sm:p-8"
           >
             <div class="flex flex-wrap items-center gap-3">
               <span
@@ -76,7 +81,7 @@ const statusStyles: Record<string, string> = {
               {program.data.status === 'open' && program.data.applyUrl ? (
                 <a
                   href={program.data.applyUrl}
-                  class="inline-flex items-center gap-2 rounded-full bg-purple-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+                  class="inline-flex items-center gap-2 rounded-full bg-purple-900 px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/20"
                 >
                   Apply Now
                   <Icon name="arrow-right" class="h-4 w-4" />
@@ -106,7 +111,7 @@ const statusStyles: Record<string, string> = {
       <div class="mt-8 flex flex-wrap justify-center gap-4">
         <a
           href="/contact"
-          class="rounded-full bg-purple-900 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+          class="rounded-full bg-purple-900 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/20"
         >
           Get in Touch
         </a>

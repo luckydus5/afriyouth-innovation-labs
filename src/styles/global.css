@@ -70,3 +70,68 @@ h4 {
 .gradient-surface {
   background: linear-gradient(135deg, var(--color-pink-500), var(--color-blue-700));
 }
+
+/* Scroll-reveal: elements fade and rise into place once visible.
+   JS toggles .is-visible; CSS alone (no-JS) keeps content shown. */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+}
+.reveal-stagger.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Once revealed, hand transitions back to the element's own utility
+   classes (e.g. hover:-translate-y-1) so hover effects aren't locked
+   to only opacity/transform by the shorthand above. */
+.reveal-stagger.is-visible > * {
+  transition-property: opacity, transform, border-color, box-shadow, background-color, color;
+}
+.reveal-stagger.is-visible > *:nth-child(1) {
+  transition-delay: 0ms;
+}
+.reveal-stagger.is-visible > *:nth-child(2) {
+  transition-delay: 60ms;
+}
+.reveal-stagger.is-visible > *:nth-child(3) {
+  transition-delay: 120ms;
+}
+.reveal-stagger.is-visible > *:nth-child(4) {
+  transition-delay: 180ms;
+}
+.reveal-stagger.is-visible > *:nth-child(5) {
+  transition-delay: 240ms;
+}
+.reveal-stagger.is-visible > *:nth-child(6) {
+  transition-delay: 300ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-stagger > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* No-JS fallback: if the observer script never runs, content must still show. */
+.no-js .reveal,
+.no-js .reveal-stagger > * {
+  opacity: 1;
+  transform: none;
+}

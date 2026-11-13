@@ -13,8 +13,19 @@ const labs = (await getCollection('labs')).sort((a, b) => a.data.order - b.data.
 >
   <!-- Hero -->
   <section class="relative overflow-hidden bg-purple-900 text-white">
-    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-      <div class="max-w-3xl">
+    <div
+      class="pointer-events-none absolute -right-24 -top-24 h-[480px] w-[480px] rounded-full opacity-20 blur-3xl"
+      style="background: radial-gradient(circle, #c723df, transparent 70%)"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="pointer-events-none absolute -bottom-32 right-0 h-[420px] w-[420px] rounded-full opacity-20 blur-3xl"
+      style="background: radial-gradient(circle, #0301ff, transparent 70%)"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+      <div class="reveal max-w-3xl">
         <p class="font-display text-sm font-semibold uppercase tracking-widest text-pink-500">
           Research &middot; Innovation &middot; Policy &middot; Foresight
         </p>
@@ -31,13 +42,13 @@ const labs = (await getCollection('labs')).sort((a, b) => a.data.order - b.data.
         <div class="mt-9 flex flex-wrap gap-4">
           <a
             href="/programs"
-            class="rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+            class="rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/30"
           >
             Explore Opportunities
           </a>
           <a
             href="/about"
-            class="rounded-full border border-white/30 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10"
+            class="rounded-full border border-white/30 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:border-white hover:bg-white/10"
           >
             Learn Our Story
           </a>
@@ -49,7 +60,7 @@ const labs = (await getCollection('labs')).sort((a, b) => a.data.order - b.data.
   <!-- Three-path router -->
   <section class="bg-surface py-16 sm:py-20" aria-labelledby="paths-heading">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="max-w-2xl">
+      <div class="reveal max-w-2xl">
         <h2 id="paths-heading" class="font-display text-3xl font-bold text-ink sm:text-4xl">
           Wherever you're starting from, there's a path for you.
         </h2>
@@ -58,7 +69,7 @@ const labs = (await getCollection('labs')).sort((a, b) => a.data.order - b.data.
         </p>
       </div>
 
-      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="reveal-stagger mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <PathCard
           icon="rocket"
           title="I'm looking for an opportunity"
@@ -87,23 +98,23 @@ const labs = (await getCollection('labs')).sort((a, b) => a.data.order - b.data.
   <!-- What we do -->
   <section class="bg-white py-16 sm:py-20" aria-labelledby="work-heading">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div class="reveal flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <h2 id="work-heading" class="font-display text-3xl font-bold text-ink sm:text-4xl">
           Our labs
         </h2>
         <a
           href="/services"
-          class="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700"
+          class="group inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700"
         >
           Explore all services
-          <Icon name="arrow-right" class="h-4 w-4" />
+          <Icon name="arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </a>
       </div>
 
-      <ul class="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      <ul class="reveal-stagger mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
         {labs.map((lab) => (
-          <li class="flex gap-4">
-            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-surface text-blue-600">
+          <li class="group flex gap-4">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-surface text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white">
               <Icon name={lab.data.icon} class="h-5 w-5" />
             </div>
             <div>
@@ -117,8 +128,8 @@ const labs = (await getCollection('labs')).sort((a, b) => a.data.order - b.data.
   </section>
 
   <!-- Flagship product -->
-  <section class="gradient-surface py-16 text-white sm:py-20">
-    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+  <section class="gradient-surface relative overflow-hidden py-16 text-white sm:py-20">
+    <div class="reveal relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
       <p class="font-display text-sm font-semibold uppercase tracking-widest text-white/80">
         Our flagship product
       </p>
@@ -133,7 +144,7 @@ const labs = (await getCollection('labs')).sort((a, b) => a.data.order - b.data.
       <div class="mt-8">
         <a
           href="/about"
-          class="inline-flex items-center gap-1.5 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-purple-900 transition-colors hover:bg-white/90"
+          class="inline-flex items-center gap-1.5 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-purple-900 transition-all hover:-translate-y-0.5 hover:bg-white/90 hover:shadow-lg"
         >
           Learn how it works
           <Icon name="arrow-right" class="h-4 w-4" />
@@ -144,7 +155,7 @@ const labs = (await getCollection('labs')).sort((a, b) => a.data.order - b.data.
 
   <!-- Final CTA -->
   <section class="bg-surface py-16 sm:py-20">
-    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+    <div class="reveal mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
       <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Ready to get involved?</h2>
       <p class="mt-4 text-base text-ink-soft">
         Whether you're an individual, an organization, or a potential partner, we'd like to hear
@@ -153,7 +164,7 @@ const labs = (await getCollection('labs')).sort((a, b) => a.data.order - b.data.
       <div class="mt-8 flex flex-wrap justify-center gap-4">
         <a
           href="/contact"
-          class="rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+          class="rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/30"
         >
           Get in Touch
         </a>
