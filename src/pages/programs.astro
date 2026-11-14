@@ -5,9 +5,11 @@ import { getCollection } from 'astro:content';
 
 const programs = (await getCollection('programs')).sort((a, b) => a.data.order - b.data.order);
 
+// Solid brand fills with white text: pink and blue both clear WCAG AA at this
+// weight, where the same colours used as small text on a tint would not.
 const statusStyles: Record<string, string> = {
-  open: 'bg-blue-600/10 text-blue-700',
-  upcoming: 'bg-purple-900/10 text-purple-900',
+  open: 'bg-blue-600 text-white',
+  upcoming: 'bg-pink-500 text-white',
   closed: 'bg-ink-soft/10 text-ink-soft',
 };
 ---
@@ -82,7 +84,7 @@ const statusStyles: Record<string, string> = {
               {program.data.status === 'open' && program.data.applyUrl ? (
                 <a
                   href={program.data.applyUrl}
-                  class="inline-flex items-center gap-2 rounded-full bg-purple-900 px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/20"
+                  class="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/20"
                 >
                   Apply Now
                   <Icon name="arrow-right" class="h-4 w-4" />
@@ -90,7 +92,7 @@ const statusStyles: Record<string, string> = {
               ) : (
                 <a
                   href={`/programs/${program.id}/register`}
-                  class="inline-flex items-center gap-2 rounded-full border border-purple-900 px-6 py-3 text-sm font-semibold text-purple-900 transition-colors hover:bg-surface"
+                  class="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/20"
                 >
                   Register Interest
                   <Icon name="arrow-right" class="h-4 w-4" />
