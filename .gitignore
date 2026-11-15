@@ -31,3 +31,6 @@ pnpm-debug.log*
 
 # Microsoft Office lock files
 ~$*
+
+# local design exports, kept off the repo
+docs/figma-import/
