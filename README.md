@@ -73,6 +73,71 @@ both `src/pages/contact.astro` and `src/pages/programs/[slug]/register.astro`.
 
 After editing, commit the change. Vercel rebuilds and redeploys automatically.
 
+## Technology choices
+
+Each tool below was picked against one requirement of the challenge brief: a fast, accessible,
+content-editable site that a non-developer can maintain and that costs nothing to host.
+
+| Choice                                    | Why                                                                                                                                                                                                                                                                                    |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Astro** (static output)                 | The site is content, not an application. Astro renders every page to plain HTML at build time and ships zero JavaScript by default, so pages load fast on the low-bandwidth mobile connections much of the audience uses. A static build also has no server to run, patch, or pay for. |
+| **Astro content collections**             | Labs, programmes, and team members live as Markdown/JSON in `src/content/`, validated by a schema in `src/content.config.ts`. Staff edit plain text files; a typo in a field name or a bad `status` value fails the build instead of silently breaking a page.                         |
+| **Tailwind CSS v4**                       | Utility classes keep styling next to the markup, so there is no growing stylesheet to untangle. Brand colours and type scale are defined once as design tokens in `src/styles/global.css`, and unused CSS is stripped at build time.                                                   |
+| **TypeScript** (`astro/tsconfigs/strict`) | Strict typing on content schemas and component props catches a missing programme field or mistyped prop during development rather than after deployment.                                                                                                                               |
+| **lucide-static**                         | Icons are inlined as SVG at build time — no icon font, no runtime request, no third-party script on the page.                                                                                                                                                                          |
+| **Web3Forms**                             | The contact and registration forms need to deliver email, which static hosting cannot do. Web3Forms handles submissions over HTTPS without a backend, a database, or any personal data stored in this repository.                                                                      |
+| **@astrojs/sitemap**                      | Generates `sitemap-index.xml` at build time for search engines, with no manual upkeep as pages are added.                                                                                                                                                                              |
+| **Prettier + EditorConfig**               | One formatting standard, enforced by `npm run format:check`, so contributions stay consistent and diffs show real changes rather than whitespace.                                                                                                                                      |
+| **Vercel**                                | Free static hosting with automatic HTTPS, a global CDN, and a rebuild on every push to `main`. Any static host works equally well, since the build output is just files.                                                                                                               |
+
+## Security
+
+The site has no backend, no database, no user accounts, and no server-side code at runtime — it
+is a folder of static files behind a CDN. That removes most of the usual attack surface
+(SQL injection, authentication bypass, server compromise) by design rather than by mitigation.
+What remains is handled as follows.
+
+- **No secrets in the repository.** The site is fully static, so nothing in this codebase is
+  confidential at runtime. The Web3Forms `access_key` in the form markup is a public submission
+  key by design — it only lets a form post a message to the owner's inbox and grants no access to
+  past submissions or account settings. The key is rate-limited by Web3Forms and can be rotated
+  from their dashboard if abused. No API tokens, database credentials, or private keys exist in
+  this project.
+- **No personal data stored.** Form submissions travel over HTTPS directly from the visitor's
+  browser to Web3Forms and are delivered by email. Nothing is written to this site, a database, or
+  browser storage, which keeps the project clear of data-retention obligations.
+- **Spam handling.** Both forms include a hidden `botcheck` honeypot field. Web3Forms rejects any
+  submission that fills it, blocking most automated spam without a CAPTCHA that would hurt
+  accessibility and slow the page.
+- **Input handling.** All visitor input leaves the page immediately as a form POST and is never
+  rendered back into the site, so there is no stored-XSS path. Pages are built from trusted
+  repository content only; nothing is generated from URL parameters or visitor input.
+- **Controlled raw HTML.** `set:html` is used in exactly one place, `src/components/Icon.astro`,
+  to inline Lucide SVG files read from `node_modules` at build time. The source is a pinned
+  dependency, not user or network input. Astro escapes every other interpolation by default, and
+  this remains the one exception to review.
+- **Minimal third-party code.** No analytics, tag managers, trackers, or hosted scripts are
+  loaded. The only external request a visitor's browser makes is the form POST to Web3Forms on
+  submit. Fewer third parties means fewer ways to inject code into the page.
+- **Dependency hygiene.** Dependencies are pinned in `package-lock.json`, and the set is
+  deliberately small. All are build-time only — none ship to the browser — so a vulnerability in
+  one cannot reach visitors directly. Run `npm audit` before handover and after any dependency
+  update.
+- **Transport security.** Vercel serves the site over HTTPS with HSTS and redirects HTTP
+  automatically. Web3Forms accepts submissions over HTTPS only, so form data is encrypted in
+  transit.
+- **Outbound links.** External links open with `rel="noopener noreferrer"`, preventing the target
+  page from reaching back into this one via `window.opener`.
+
+### Before handover
+
+- Replace the shared Web3Forms access key with one from AfriYouth's own account, in both
+  `src/pages/contact.astro` and `src/pages/programs/[slug]/register.astro`, so submissions reach
+  an inbox AfriYouth controls.
+- Run `npm audit` and update anything flagged.
+- Restrict write access to the GitHub repository to trusted maintainers; a push to `main`
+  deploys straight to production.
+
 ## Local development
 
 ```bash
@@ -93,12 +158,6 @@ npm run dev       # starts a local server at http://localhost:4321
 The site is a static build with no backend. Deploy the `dist/` output to any static host.
 For Vercel: import the GitHub repository, leave the build settings at their Astro defaults
 (`npm run build`, output directory `dist`), and deploy.
-
-## Contact form
-
-The contact form posts to [Web3Forms](https://web3forms.com) (free, no backend needed). Before
-launch, replace the placeholder `access_key` in `src/pages/contact.astro` with a real Web3Forms
-access key tied to the inbox that should receive submissions.
 
 ## Recommended editor setup
 
